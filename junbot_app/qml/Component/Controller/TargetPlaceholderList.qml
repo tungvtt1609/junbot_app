@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.15
 
 Item {
     id: root
@@ -6,6 +7,7 @@ Item {
     height: parent.height / 2
     // public for others
     readonly property var targets: [self.item1, self.item2, self.item3]
+    property int m_loopTime: 0
 
     signal requestRemoveItem(string item)
 
@@ -30,10 +32,10 @@ Item {
                 root.requestRemoveItem(item2)
                 item2 = ""
                 return
-            case 2:
-                root.requestRemoveItem(item3)
-                item3 = ""
-                return
+            // case 2:
+            //     root.requestRemoveItem(item3)
+            //     item3 = ""
+            //     return
             default:
                 console.warn("Invalid index:", index)
                 return
@@ -43,6 +45,10 @@ Item {
 
     Row {
         anchors.fill: parent
+
+        width: (parent.width / 3) * 2
+        height: parent.height
+
         TargetPlaceholder {
             id: first_item
             width: parent.width / 3
@@ -61,13 +67,29 @@ Item {
             onClicked: self.removeItemAt(1)
         }
 
-        TargetPlaceholder {
-            id: third_item
-            width: parent.width / 3
-            height: parent.height
-            currentData: self.item3
-            margins: [ 10, 30, 10, 15 ]
-            onClicked: self.removeItemAt(2)
+        // TargetPlaceholder {
+        //     id: third_item
+        //     width: parent.width / 3
+        //     height: parent.height
+        //     currentData: self.item3
+        //     margins: [ 10, 30, 10, 15 ]
+        //     onClicked: self.removeItemAt(2)
+        // }
+    }
+
+    SpinBox {
+        id: loopTime
+        width: parent.width / 5
+        height: parent.height / 2
+        anchors.top: parent.top
+        anchors.topMargin: 30
+        anchors.right: parent.right
+        anchors.rightMargin: parent.width / 10
+        value: 0
+
+        onValueChanged: {
+            m_loopTime = loopTime.value
+            AppModel.loopTime = m_loopTime
         }
     }
 
@@ -88,10 +110,10 @@ Item {
             return true
         }
 
-        if (self.item3 === "") {
-            self.item3 = newItem
-            return true
-        }
+        // if (self.item3 === "") {
+        //     self.item3 = newItem
+        //     return true
+        // }
 
         console.warn("Full")
         return false
@@ -108,10 +130,10 @@ Item {
             return true
         }
 
-        if (self.item3 === item) {
-            self.item3 = ""
-            return true
-        }
+        // if (self.item3 === item) {
+        //     self.item3 = ""
+        //     return true
+        // }
 
         console.warn("No item match:", item)
         return false
@@ -121,7 +143,7 @@ Item {
         if (AppModel.deliveryNodes.length >= 3) {
             self.item1 = AppModel.deliveryNodes[0]
             self.item2 = AppModel.deliveryNodes[1]
-            self.item3 = AppModel.deliveryNodes[2]
+            // self.item3 = AppModel.deliveryNodes[2]
         }
         self.completed = true
     }

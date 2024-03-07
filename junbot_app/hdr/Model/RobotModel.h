@@ -13,6 +13,7 @@ class RobotModel : public QObject
     Q_PROPERTY(int missionState     READ missionState   WRITE setMissionState   NOTIFY missionStateChanged  FINAL)
     Q_PROPERTY(int sensorState      READ sensorState    WRITE setSensorState    NOTIFY sensorStateChanged   FINAL)
     Q_PROPERTY(QString time         READ time           WRITE setTime           NOTIFY timeChanged          FINAL)
+    Q_PROPERTY(QString obstacleState         READ obstacleState           WRITE setObstacleState           NOTIFY obstacleStateChanged          FINAL)
 public:
     static RobotModel *getInstance();
     ~RobotModel() = default;
@@ -35,6 +36,10 @@ public:
     QString time() const;
     void setTime(const QString &newTime);
 
+    QString obstacleState() const;
+    void setObstacleState(const QString &newTime);
+
+
 signals:
     void batteryChanged();
     void batteryStateChanged();
@@ -42,6 +47,7 @@ signals:
     void missionStateChanged();
     void sensorStateChanged();
     void timeChanged();
+    void obstacleStateChanged();
 
 private:
     explicit RobotModel(QObject *parent = nullptr);
@@ -52,6 +58,7 @@ private:
     int m_missionState;
     int m_sensorState;
     QString m_time;
+    QString m_obState;
 };
 
 #endif // ROBOTMODEL_H

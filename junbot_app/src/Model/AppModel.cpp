@@ -16,7 +16,7 @@ AppModel::AppModel(QObject *parent)
     , m_connectionState { static_cast<int>(AppEnums::Disconnected) }
     , m_username { "lacie" }
     , m_password { "123456" }
-    , m_hostname { "10.42.0.1" }
+    , m_hostname { "192.168.0.105" }
     , m_port { 1883 }
 {
     m_robotMess = "";
@@ -139,6 +139,19 @@ void AppModel::setPort(const int &newPort)
         return;
     m_port = newPort;
     emit portChanged();
+}
+
+int AppModel::loopTime() const
+{
+    return m_loopTime;
+}
+
+void AppModel::setLoopTime(const int &newLoopTime)
+{
+    if (m_loopTime == newLoopTime)
+        return;
+    m_loopTime = newLoopTime;
+    emit loopTimeChanged();
 }
 
 QStringList AppModel::deliveryNodes() const

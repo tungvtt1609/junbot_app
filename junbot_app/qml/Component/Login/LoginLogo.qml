@@ -22,6 +22,6 @@ Item {
         anchors.centerIn: parent
         sourceSize.width: parent.height * 400 / 148
         sourceSize.height: parent.height * 0.8
-        source: "qrc:/res/VMC_Logo.png"
+        source: "qrc:/res/logo_aet.jpg"
     }
 }

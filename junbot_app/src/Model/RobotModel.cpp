@@ -84,6 +84,19 @@ void RobotModel::setTime(const QString &newTime)
     emit timeChanged();
 }
 
+QString RobotModel::obstacleState() const
+{
+    return m_obState;
+}
+
+void RobotModel::setObstacleState(const QString &state)
+{
+    if (m_obState == state)
+        return;
+    m_obState = state;
+    emit obstacleStateChanged();
+}
+
 RobotModel::RobotModel(QObject *parent)
     : QObject { parent }
     , m_battery { 100 }
@@ -92,6 +105,7 @@ RobotModel::RobotModel(QObject *parent)
     , m_missionState { 0 }
     , m_sensorState { 0 }
     , m_time { QLatin1String("1970.1.1 00:00:00") }
+    , m_obState { QLatin1String("Normal") }
 {
 
 }

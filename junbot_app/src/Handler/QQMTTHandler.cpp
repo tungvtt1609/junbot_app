@@ -96,13 +96,14 @@ void QMqttHandler::pub(QString nod, QString message)
     m_client->publish(topic, QJsonDocument(jobj).toJson());
 }
 
-void QMqttHandler::pubRun(QString Target1, QString Target2, QString Target3)
+void QMqttHandler::pubRun(QString Target1, QString Target2, int loopTime)
 {
     QString topic = "robot1/control";
     QJsonObject jobj;
     jobj["target1"] = Target1;
     jobj["target2"] = Target2;
-    jobj["target3"] = Target3;
+    jobj["loopTime"] = loopTime;
+    LOG_INF << jobj;
     m_client->publish(topic, QJsonDocument(jobj).toJson());
 }
 

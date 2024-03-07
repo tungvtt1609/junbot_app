@@ -17,11 +17,12 @@ Item {
             id: name
             anchors {
                 top: parent.top
-                topMargin: 28
+                topMargin: 10
                 horizontalCenter: parent.horizontalCenter
             }
             font.bold: true
-            text: qsTr("Delivery Targets")
+            font.pixelSize: 40
+            text: qsTr("DELIVERY TARGET")
         }
 
         Rectangle {
@@ -109,17 +110,17 @@ Item {
         anchors.top: node_grid.bottom
         margins: [10, 10, 20, 10]
         borderRadius: 10
-        backgroundColor: pressed ? pressedColor : "#63FFA8"
+        backgroundColor: pressed ? pressedColor : "#e3dede"
 
         property bool pressed: false
-        property string pressedColor: Func.darker("#63FFA8", 20)
+        property string pressedColor: Func.darker("#fa3939", 20)
 
         QText {
             anchors.centerIn: parent
 //            anchors.verticalCenterOffset: (parent.bottomMargin - parent.topMargin) / 2
-            font.pixelSize: 50
+            font.pixelSize: 40
             font.bold: true
-            text: "START"
+            text: "Delivery"
         }
 
         MouseArea {
@@ -127,7 +128,7 @@ Item {
             onPressed: parent.pressed = true
             onReleased: parent.pressed = false
             onClicked: {
-                QMqttHandler.pubRun(AppModel.deliveryNodes[0], AppModel.deliveryNodes[1], AppModel.deliveryNodes[2]);
+                QMqttHandler.pubRun(AppModel.deliveryNodes[0], AppModel.deliveryNodes[1], AppModel.loopTime);
 //                console.warn("Do something in CPP, use the MODEL->deliveryNodes() to get list targets:", AppModel.deliveryNodes)
                 QmlHandler.qmlSendEvent(ENUMS.SendDeliveryNodes)
             }

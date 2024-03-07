@@ -6,6 +6,6 @@ Item {
     Image {
         id: img
         anchors.fill: parent
-        source: "qrc:/res/red_bg.jpg"
+        source: "qrc:/res/apply_now.jpg"
     }
 }
