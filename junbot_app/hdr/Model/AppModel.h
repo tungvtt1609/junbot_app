@@ -21,6 +21,7 @@ class AppModel : public QObject
     Q_PROPERTY(int          connectionState     READ connectionState    WRITE setConnectionState    NOTIFY connectionStateChanged)
     Q_PROPERTY(QStringList  listNodes           READ listNodes          WRITE setListNodes          NOTIFY listNodesChanged)
     Q_PROPERTY(QStringList  deliveryNodes       READ deliveryNodes      WRITE setDeliveryNodes      NOTIFY deliveryNodesChanged)
+    Q_PROPERTY(int          loopTime            READ loopTime           WRITE setLoopTime           NOTIFY loopTimeChanged)
 
 public:
     static AppModel *getInstance();
@@ -58,6 +59,9 @@ public:
     QStringList listNodes() const;
     void setListNodes(const QStringList &newListNodes);
 
+    int loopTime() const;
+    void setLoopTime(const int &newPort);
+
 signals:
     void connectionStateChanged();
     void currentScreenIDChanged();
@@ -70,6 +74,7 @@ signals:
     void deliveryNodesChanged();
     void listNodesChanged();
     void notifyLoginFail();
+    void loopTimeChanged();
 
 private:
     AppModel(QObject* parent = nullptr);
@@ -84,6 +89,7 @@ private:
     int m_port;
     QStringList m_deliveryNodes;
     QStringList m_listNodes;
+    int m_loopTime;
 };
 
 #endif // APPMODEL_H

@@ -11,7 +11,7 @@ Frame {
     borderRadius: 10
     width: 200
     height: 100
-    backgroundColor: occupied ? "#63D9FF" : CONST.COLOR_FRAME_BG
+    backgroundColor: occupied ? "#ed4040" : CONST.COLOR_FRAME_BG
     drawShadow: occupied
     borderColor: occupied ? "transparent" : "#A8A8A8"
     borderWidth: 2

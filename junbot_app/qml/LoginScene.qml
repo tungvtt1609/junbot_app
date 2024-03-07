@@ -44,7 +44,7 @@ Item {
                 family: vt_font.name
             }
             color: "#fafafa"
-            text: "Login"
+            text: "LOGIN"
         }
 
         LoginInput {

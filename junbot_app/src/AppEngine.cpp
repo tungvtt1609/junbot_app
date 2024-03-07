@@ -108,7 +108,7 @@ void AppEngine::initConnection()
 {
     LOG_DBG;
     RobotNode node;
-    node.ip = "10.42.0.1";
+    node.ip = "192.168.0.105";
     node.name = "robot1";
     node.current_state_topic = "robot1/state";
     node.control_topic = "robot1/control";
@@ -129,7 +129,7 @@ void AppEngine::removeConnection()
 
 void AppEngine::loginAuthenication()
 {
-#ifdef DUMMY_IGNORE_LOGIN
+#ifndef DUMMY_IGNORE_LOGIN
     MODEL->setLoginStatus(true);
     initConnection();
     MODEL->setCurrentScreenID(AppEnums::E_SCREEN_t::HomeScreen);
@@ -175,7 +175,12 @@ void AppEngine::sendDeliveryNodes()
         nodeObj.insert("z", nodeMaps.value(node).z);
         nodeArr.append(nodeObj);
     }
+    QJsonObject loopTimeObj;
+    loopTimeObj.insert("loopTime", MODEL->loopTime());
+    nodeArr.append(loopTimeObj);
+
     obj.insert("nodes", nodeArr);
+    // obj.insert("loopTime", MODEL->loopTime());
 
     LOG_DBG << "Deliver: " << QJsonDocument(obj).toJson(QJsonDocument::Compact);
     m_handler->mqttPublish("robot1/deliver", obj);
@@ -206,6 +211,7 @@ void AppEngine::processStateResponse(const QByteArray &message)
     int mssnStt = obj.value("is_mission_state").toInt();
     int sensStt = obj.value("sensor_state").toInt();
     QString time = obj.value("time").toString();
+    int obstacle = obj.value("obstacle").toInt();
 
     RobotModel::getInstance()->setBattery(battery);
     RobotModel::getInstance()->setBatteryState(battStt);
@@ -213,6 +219,19 @@ void AppEngine::processStateResponse(const QByteArray &message)
     RobotModel::getInstance()->setMissionState(mssnStt);
     RobotModel::getInstance()->setSensorState(sensStt);
     RobotModel::getInstance()->setTime(time);
+
+    if (obstacle == 0)
+    {
+        RobotModel::getInstance()->setObstacleState("No Obstacle");
+    }
+    else if (obstacle == 1)
+    {
+        RobotModel::getInstance()->setObstacleState("Human !!!");
+    }
+    else
+    {
+        RobotModel::getInstance()->setObstacleState("Normal");
+    }
 }
 
 

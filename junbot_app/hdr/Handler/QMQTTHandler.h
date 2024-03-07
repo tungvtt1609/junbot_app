@@ -53,7 +53,7 @@ public slots:
     void mqttUnsubcribe(const QString& topic);
 
     void pub(QString nod, QString message);
-    void pubRun(QString Target1, QString Target2, QString Target3);
+    void pubRun(QString Target1, QString Target2, int loopTime);
 
     void setMqttMessage(QJsonObject &msg);  // why?
     void setCurrentRobotNode(RobotNode node);

@@ -11,7 +11,7 @@ Frame {
     borderRadius: 10
     width: 200
     height: 100
-    backgroundColor: activated ? "#63D9FF" : "#FF6363"
+    backgroundColor: activated ? "#dedcdc" : "#ed4040"
 
     QText {
         id: label

@@ -1,4 +1,4 @@
-    import QtQuick 2.0
+import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Layouts 1.1
@@ -69,6 +69,9 @@ Rectangle {
             }
             QText {
                 text: qsTr("<b>Current time</b>: %1").arg(RobotModel.time)
+            }
+            QText {
+                text: qsTr("<b>Obstacle wanring</b>: %1").arg(RobotModel.obstacleState)
             }
         }
     }

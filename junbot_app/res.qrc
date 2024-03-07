@@ -38,5 +38,10 @@
         <file>res/padlock_32.png</file>
         <file>res/user_32.png</file>
         <file>res/icon_bot.png</file>
+        <file>res/apply_now.jpg</file>
+        <file>res/logo_aet.jpg</file>
+        <file>res/icon_ro.png</file>
+        <file>res/dark/joy.png</file>
+        <file>res/light/joy.png</file>
     </qresource>
 </RCC>
