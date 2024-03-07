@@ -16,7 +16,8 @@ Item {
             horizontalCenter: parent.horizontalCenter
         }
         font.bold: true
-        text: qsTr("JUNBOT DESIGNED BY AET")
+        text: qsTr("Scada App for Omni Robot - Version 1.0
+        Copyright by Thai Huu Nguyen")
     }
 
     Rectangle {
