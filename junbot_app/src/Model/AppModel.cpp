@@ -16,7 +16,7 @@ AppModel::AppModel(QObject *parent)
     , m_connectionState { static_cast<int>(AppEnums::Disconnected) }
     , m_username { "lacie" }
     , m_password { "123456" }
-    , m_hostname { "192.168.0.105" }
+    , m_hostname { "172.16.54.232" }
     , m_port { 1883 }
 {
     m_robotMess = "";
