@@ -1,0 +1,4 @@
+Configuring OpenSSL version 1.1.1u (0x1010115fL) for android-arm64
+Using os-specific seed configuration
+$ANDROID_NDK_HOME=/home/parkhoon/android/ndk/22.1.7171670 is invalid at (eval 10) line 37.
+make: *** No rule to make target 'build_libs'.  Stop.

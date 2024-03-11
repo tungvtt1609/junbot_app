@@ -83,10 +83,10 @@ else()
     endif()
 endif()
 
-set(ANDROID_EXTRA_LIBS
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/libcrypto.so
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/libssl.so
-CACHE INTERNAL "")
+# set(ANDROID_EXTRA_LIBS
+#     ${CMAKE_CURRENT_SOURCE_DIR}/lib/libcrypto.so
+#     ${CMAKE_CURRENT_SOURCE_DIR}/lib/libssl.so
+# CACHE INTERNAL "")
 
 
 target_compile_definitions(junbot_app
